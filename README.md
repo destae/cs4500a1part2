@@ -1,3 +1,5 @@
+Spencer LaChance & David Mberingabo
+
 # Classes:
 * object.h contains:
 	* Object class representing a distinct object in our program, two objects can be compared for equality.
