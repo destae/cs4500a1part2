@@ -1,11 +1,10 @@
 
 Classes:
-	Object.h contains:
+	object.h contains:
 		Object class representing a distinct object in our program, two objects can be compared for equality.
-	Queue.h contains:
+	queue.h contains:
 		Queue child class of Object that represents a datastructure that can hold, enqueue and dequeue objects.
 		Node is a child class of Object that represent one entry in the Queue. It has an object and a next Node.
-	
 	test-queue.cpp contains:
 		Test cases for the Object, Queue and Node classes and their member functions.
 
