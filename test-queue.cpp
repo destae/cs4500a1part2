@@ -1,13 +1,14 @@
 //lang::CwC
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "object.h"
 #include "queue.h"
 #include "string.h"
 using namespace std;
 
 void FAIL() {   exit(1);    }
-void OK(const char* m) { /** print m */ }
+void OK(const char* m) { printf("%s: Test Success\n", m); }
 void t_true(bool p) { if (!p) FAIL(); }
 void t_false(bool p) { if (p) FAIL(); }
 
@@ -19,16 +20,15 @@ void test_queue_object_classes(){
     Object* o1 = new Object();
 
     t_true(q->is_queue_empty());
-    q->print_queue(); //expected to print an empty queue as []
 
     q->enqueue(o);
     t_false(q->is_queue_empty());
 
     q->enqueue(o1);
-    q->print_queue(); //expected to print [o1, o]
+    //q is now [o1, o]
 
-    p->enqueue(o);
-    //p now is [o]
+    p->enqueue(o1);
+    //p now is [o1]
     t_false(p->equals(q));
 
     q->dequeue();
@@ -38,13 +38,15 @@ void test_queue_object_classes(){
     q->enqueue(o);
     //q now is [o, o1]
 
-    t_true(q->get_queue_length == 2);
+    t_true(q->get_queue_length() == 2);
 
-    Object* peeked_q = q->peek(); // = Object o
-    Object* peeked_p = p->peek(); // = Object o
+    Object* peeked_q = q->peek(); // = Object o1
+    Object* peeked_p = p->peek(); // = Object o1
 
     t_true(peeked_q->equals(peeked_p));
     t_true(peeked_q->hash() == peeked_p->hash());
+
+    OK("Object Queue");
 }
 
 //Test cases for the Queue & String classes & member functions.
@@ -54,30 +56,32 @@ void test_queue_string_classes(){
     String* s1 = new String("Howdy");
     String* s2 = new String("Partner");
 
-    q->enqueue(s1);
+    q->enqueue(s2);
     t_false(q->is_queue_empty());
 
-    q->enqueue(s2);
-    q->print_queue(); //expected to print [s2, s1]
+    q->enqueue(s1);
+    // q is now [s1, s2]
 
     p->enqueue(s2);
-    //p now is [s2]
+    // p now is [s2]
     t_false(p->equals(q));
 
     q->dequeue();
-    // q now is [s2]
+    // q now is [s1]
     t_true(p->equals(q));
 
-    q->enqueue(s1);
-    //q now is [s1, s2]
+    q->enqueue(s2);
+    //q now is [s2, s1]
 
-    t_true(q->get_queue_length == 2);
+    t_true(q->get_queue_length() == 2);
 
     Object* peeked_q = q->peek(); // = String s1
     Object* peeked_p = p->peek(); // = String s2
 
     t_false(peeked_q->equals(peeked_p));
     t_false(peeked_q->hash() == peeked_p->hash());
+
+    OK("String Queue");
 }
 
 void test_string_class(){
@@ -94,6 +98,8 @@ void test_string_class(){
     t_true(s->compare(s1) == -1);
     t_true(s2->compare(s3) == 1);
     t_true(s2->compare(s) == 0);
+
+    OK("String");
 }
 
 //Test cases for the Node class & member functions.
@@ -125,10 +131,14 @@ void test_node_class(){
 
     t_false(n->has_next());
     t_true(n1->has_next());
+
+    OK("Node");
 }
 
 int main() {
     test_queue_object_classes();
+    test_queue_string_classes();
+    test_string_class();
     test_node_class();
     return 0;
 }
