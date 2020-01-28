@@ -22,36 +22,6 @@ class String : public Object {
 		~String()
 
 		/*
-		 * Getter for this String's char*
-		 *
-		 * @return this class's char* field
-		 */
-		char* get_chars()
-
-		/*
-		 * The length of this String
-		 *
-		 * @return the length
-		 */
-		size_t length()
-
-		/*
-		 * Is this String equal to the given Object?
-		 *
-		 * @param o the Object to be compared
-		 *
-		 * @return true if the two are equal, false if they are not
-		 */
-		bool equals(Object* o)
-
-		/*
-		 * Returns a hash value unique to this String
-		 *
-		 * @return the hash
-		 */
-		size_t hash_me()
-
-		/*
 		 * Compares this String to the given one
 		 *
 		 * @param other The String to be compared with this one

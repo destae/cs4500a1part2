@@ -6,34 +6,29 @@
 class Object {
     public:
 
-        /* Constructor.
-         *
-        */
+        /*
+         * Constructor.
+         */
         Object()
 
-        /* Deconstructor.
-         *
-        */
+        /*
+         * Deconstructor.
+         */
         virtual ~Object()
 
         /*
-         *@param other is the object to check against this.
-         *@returns bool true if other equates this, false if not.
-        */
+         * 
+         *
+         * @param other The object to check against this.
+         *
+         * @return true if other equates this, false if not.
+         */
         virtual bool equals(Object* other)
 
         /*
-         *@returns size_t a number representation unique to this object.
-        */
-        size_t hash()
-
-        /*
-         *@returns size_t a number representation unique to this object.
-        */
-        virtual size_t hash_me()
-
-        /*
-         * prints a string representation of this object to console.
-        */
-        void print_object()
+         * Generates a hash code unique to this object.
+         * 
+         * @return a numberical representation of this object.
+         */
+        virtual size_t hash()
 };
