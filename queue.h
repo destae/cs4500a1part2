@@ -61,11 +61,6 @@ class Queue : public Object{
         int get_queue_length()
 
         /*
-         * Prints all the objects held in this Queue.
-         */
-        void print_queue()
-
-        /*
          * Generates a hash code unique to this Queue.
          */
         size_t hash()
