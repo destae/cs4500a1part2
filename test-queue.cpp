@@ -45,7 +45,6 @@ void test_queue_object_classes(){
 
     t_true(peeked_q->equals(peeked_p));
     t_true(peeked_q->hash() == peeked_p->hash());
-    peeked_q->print_object(); // Expected to print Object o
 }
 
 //Test cases for the Queue & String classes & member functions.
@@ -79,7 +78,6 @@ void test_queue_string_classes(){
 
     t_false(peeked_q->equals(peeked_p));
     t_false(peeked_q->hash() == peeked_p->hash());
-    peeked_q->print_object(); // Expected to print String s1
 }
 
 void test_string_class(){
@@ -92,12 +90,6 @@ void test_string_class(){
 
     t_true(s->equals(s2));
     t_false(s->equals(s1));
-
-    t_true(s->get_chars() == s2->get_chars());
-    t_false(s->get_chars() == s1->get_chars());
-
-    t_true(s->length() == s1->length());
-    t_false(s->length() == s2->length());
 
     t_true(s->compare(s1) == -1);
     t_true(s2->compare(s3) == 1);
