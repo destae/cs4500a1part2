@@ -102,43 +102,9 @@ void test_string_class(){
     OK("String");
 }
 
-//Test cases for the Node class & member functions.
-void test_node_class(){
-    Object* o = new Object();
-    Object* o1 = new Object();
-    Node* n = new Node(o);
-    Node* n1 = new Node(o1);
-    Node* n2 = new Node(o);
-    Node* n3 = new Node(o);
-
-    t_false(n->get_object()->equals(n1->get_object()));
-    t_true(n->get_object()->equals(n2->get_object()));
-
-    n->set_next(n1);
-    n1->set_next(n3);
-    n2->set_next(n1);
-
-    t_false(n->equals(n1));
-    t_true(n->equals(n2));
-
-    n1->set_next(n1);// Throws an error, trying to set itself as next Node
-
-    n2->remove_next();
-    t_false(n->get_next()->equals(n2->get_next())); //n & n2 have same object, but n has a next and n2 doesnt have a next
-
-    n->remove_next();
-    t_true(n->get_next()->equals(n2->get_next())); //n & n2 have same object, and each have no next
-
-    t_false(n->has_next());
-    t_true(n1->has_next());
-
-    OK("Node");
-}
-
 int main() {
     test_queue_object_classes();
     test_queue_string_classes();
     test_string_class();
-    test_node_class();
     return 0;
 }
