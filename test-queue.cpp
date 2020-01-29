@@ -91,8 +91,8 @@ void test_string_class() {
   assert(s4->equals(s2));
   assert(!s->equals(s1));
 
-  assert(s->compare(s1) == -1);
-  assert(s2->compare(s3) == 1);
+  assert(s->compare(s1) < 0);
+  assert(s2->compare(s3) > 0);
   assert(s2->compare(s4) == 0);
 
   OK("String");
