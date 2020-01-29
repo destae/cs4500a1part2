@@ -3,19 +3,11 @@
 #include "object.h"
 #include "queue.h"
 #include "string.h"
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-void FAIL() { exit(1); }
 void OK(const char *m) { printf("%s: Test Success\n", m); }
-void t_true(bool p) {
-  if (!p)
-    FAIL();
-}
-void t_false(bool p) {
-  if (p)
-    FAIL();
-}
 
 // Test cases for the Queue & Object classes & member functions.
 void test_queue_object_classes() {
@@ -24,32 +16,32 @@ void test_queue_object_classes() {
   Object *o = new Object();
   Object *o1 = new Object();
 
-  t_true(q->is_queue_empty());
+  assert(q->is_queue_empty());
 
   q->enqueue(o);
-  t_false(q->is_queue_empty());
+  assert(!q->is_queue_empty());
 
   q->enqueue(o1);
   // q is now [o1, o]
 
   p->enqueue(o1);
   // p now is [o1]
-  t_false(p->equals(q));
+  assert(!p->equals(q));
 
   q->dequeue();
   // q now is [o1]
-  t_true(p->equals(q));
+  assert(p->equals(q));
 
   q->enqueue(o);
   // q now is [o, o1]
 
-  t_true(q->get_queue_length() == 2);
+  assert(q->get_queue_length() == 2);
 
   Object *peeked_q = q->peek(); // = Object o1
   Object *peeked_p = p->peek(); // = Object o1
 
-  t_true(peeked_q->equals(peeked_p));
-  t_true(peeked_q->hash() == peeked_p->hash());
+  assert(peeked_q->equals(peeked_p));
+  assert(peeked_q->hash() == peeked_p->hash());
 
   OK("Object Queue");
 }
@@ -62,29 +54,29 @@ void test_queue_string_classes() {
   String *s2 = new String("Partner");
 
   q->enqueue(s2);
-  t_false(q->is_queue_empty());
+  assert(!q->is_queue_empty());
 
   q->enqueue(s1);
   // q is now [s1, s2]
 
   p->enqueue(s1);
   // p now is [s1]
-  t_false(p->equals(q));
+  assert(!p->equals(q));
 
   q->dequeue();
   // q now is [s1]
-  t_true(p->equals(q));
+  assert(p->equals(q));
 
   q->enqueue(s2);
   // q now is [s2, s1]
 
-  t_true(q->get_queue_length() == 2);
+  assert(q->get_queue_length() == 2);
 
   Object *peeked_q = q->peek(); // = String s1
   Object *peeked_p = p->peek(); // = String s1
 
-  t_true(peeked_q->equals(peeked_p));
-  t_true(peeked_q->hash() == peeked_p->hash());
+  assert(peeked_q->equals(peeked_p));
+  assert(peeked_q->hash() == peeked_p->hash());
 
   OK("String Queue");
 }
@@ -96,12 +88,12 @@ void test_string_class() {
   String *s3 = new String("H");
   String *s4 = s->concat(s1);
 
-  t_true(s4->equals(s2));
-  t_false(s->equals(s1));
+  assert(s4->equals(s2));
+  assert(!s->equals(s1));
 
-  t_true(s->compare(s1) == -1);
-  t_true(s2->compare(s3) == 1);
-  t_true(s2->compare(s4) == 0);
+  assert(s->compare(s1) == -1);
+  assert(s2->compare(s3) == 1);
+  assert(s2->compare(s4) == 0);
 
   OK("String");
 }
