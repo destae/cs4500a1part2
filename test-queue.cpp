@@ -5,7 +5,6 @@
 #include "object.h"
 #include "queue.h"
 #include "string.h"
-using namespace std;
 
 void FAIL() {   exit(1);    }
 void OK(const char* m) { printf("%s: Test Success\n", m); }
@@ -62,8 +61,8 @@ void test_queue_string_classes(){
     q->enqueue(s1);
     // q is now [s1, s2]
 
-    p->enqueue(s2);
-    // p now is [s2]
+    p->enqueue(s1);
+    // p now is [s1]
     t_false(p->equals(q));
 
     q->dequeue();
@@ -71,15 +70,15 @@ void test_queue_string_classes(){
     t_true(p->equals(q));
 
     q->enqueue(s2);
-    //q now is [s2, s1]
+    // q now is [s2, s1]
 
     t_true(q->get_queue_length() == 2);
 
     Object* peeked_q = q->peek(); // = String s1
-    Object* peeked_p = p->peek(); // = String s2
+    Object* peeked_p = p->peek(); // = String s1
 
-    t_false(peeked_q->equals(peeked_p));
-    t_false(peeked_q->hash() == peeked_p->hash());
+    t_true(peeked_q->equals(peeked_p));
+    t_true(peeked_q->hash() == peeked_p->hash());
 
     OK("String Queue");
 }
@@ -89,15 +88,14 @@ void test_string_class(){
     String* s1 = new String("World.");
     String* s2 = new String("Hello World.");
     String* s3 = new String("H");
+    String* s4 = s->concat(s1);
 
-    s->concat(s1);
-
-    t_true(s->equals(s2));
+    t_true(s4->equals(s2));
     t_false(s->equals(s1));
 
     t_true(s->compare(s1) == -1);
     t_true(s2->compare(s3) == 1);
-    t_true(s2->compare(s) == 0);
+    t_true(s2->compare(s4) == 0);
 
     OK("String");
 }
