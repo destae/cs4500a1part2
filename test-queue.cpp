@@ -81,32 +81,8 @@ void test_queue_string_classes() {
   OK("String Queue");
 }
 
-void test_string_class() {
-  String *s = new String("Hello ");
-  String *s1 = new String("World.");
-  String *s2 = new String("Hello World.");
-  String *s3 = new String("H");
-  String *s4 = s->concat(s1);
-
-  assert(s4->equals(s2));
-  assert(!s->equals(s1));
-
-  assert(s2->hash() == s4->hash());
-  assert(s->hash() != s1->hash());
-
-  assert(s->size() == s1->size());
-  assert(s->size() != s2->size());
-
-  assert(s->compare(s1) < 0);
-  assert(s2->compare(s3) > 0);
-  assert(s2->compare(s4) == 0);
-
-  OK("String");
-}
-
 int main() {
   test_queue_object_classes();
   test_queue_string_classes();
-  test_string_class();
   return 0;
 }
