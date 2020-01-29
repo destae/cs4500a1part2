@@ -91,6 +91,12 @@ void test_string_class() {
   assert(s4->equals(s2));
   assert(!s->equals(s1));
 
+  assert(s2->hash() == s4->hash());
+  assert(s->hash() != s1->hash());
+
+  assert(s->size() == s1->size());
+  assert(s->size() != s2->size());
+
   assert(s->compare(s1) < 0);
   assert(s2->compare(s3) > 0);
   assert(s2->compare(s4) == 0);
