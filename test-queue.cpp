@@ -40,6 +40,8 @@ void test_queue_object_classes() {
   Object *peeked_q = q->peek(); // = Object o1
   Object *peeked_p = p->peek(); // = Object o1
 
+  assert(q->get_queue_length() == 2); // queue length unchanged after peek
+
   assert(peeked_q->equals(peeked_p));
   assert(peeked_q->hash() == peeked_p->hash());
 
@@ -74,6 +76,8 @@ void test_queue_string_classes() {
 
   Object *peeked_q = q->peek(); // = String s1
   Object *peeked_p = p->peek(); // = String s1
+
+  assert(q->get_queue_length() == 2); // queue length unchanged after peek
 
   assert(peeked_q->equals(peeked_p));
   assert(peeked_q->hash() == peeked_p->hash());
